@@ -1,19 +1,17 @@
 import './fetch-polyfill';
+import 'dotenv/config';
 import BlinksPlugin from '@solana-agent-kit/plugin-blinks';
 import DefiPlugin from '@solana-agent-kit/plugin-defi';
 import MiscPlugin from '@solana-agent-kit/plugin-misc';
 import NFTPlugin from '@solana-agent-kit/plugin-nft';
 import TokenPlugin from '@solana-agent-kit/plugin-token';
-import AEONAIPlugin from '@aeon/ai-payment';
+import AEONAIPlugin, { config } from '@aeon/ai-payment';
 import { Keypair } from '@solana/web3.js';
 import bs58 from 'bs58';
-import * as dotenv from 'dotenv';
 import { KeypairWallet, SolanaAgentKit } from 'solana-agent-kit';
 import aiTests from './agentTests';
 import programmaticTests from './programmaticTests';
 import { chooseMode, rl } from './utils';
-
-dotenv.config();
 
 function validateEnvironment(): void {
   const missingVars: string[] = [];
@@ -32,6 +30,9 @@ function validateEnvironment(): void {
     });
     process.exit(1);
   }
+
+  config.loadFromEnv();
+  config.validate();
 }
 
 validateEnvironment();

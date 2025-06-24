@@ -6,6 +6,7 @@ import getOrderAction from './aeon-ai-payment/actions/getOrder';
 import payOrderAction from './aeon-ai-payment/actions/payOrder';
 // Import all tools
 import { createOrder, getOrder, payOrder } from './aeon-ai-payment/tools';
+import config from './aeon-ai-payment/config';
 
 // Define and export the plugin
 const AEONAIPlugin = {
@@ -32,5 +33,6 @@ const AEONAIPlugin = {
   },
 } satisfies Plugin;
 
+export { config };
 // Default export for convenience
 export default AEONAIPlugin;

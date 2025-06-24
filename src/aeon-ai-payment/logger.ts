@@ -1,3 +1,5 @@
+import config from './config';
+
 type ConsoleType = Pick<
   typeof console,
   'debug' | 'log' | 'info' | 'warn' | 'error'
@@ -37,5 +39,5 @@ class ConsoleWrapper implements ConsoleType {
 }
 
 const logger = new ConsoleWrapper();
-logger.setEnabled(process.env.AEON_AI_PAYMENT_LOGGER === 'enabled');
+logger.setEnabled(config.logger);
 export default logger;

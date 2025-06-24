@@ -4,10 +4,6 @@ import config from './config';
 
 type FetchParameters = Parameters<typeof fetch>;
 
-const url = config.test
-  ? 'https://aeon-qrpay-test.alchemytech.cc'
-  : 'https://aeon-qrpay.alchemypay.org';
-
 export async function fetchData<T>(
   uri: string,
   init?: FetchParameters[1]
@@ -18,6 +14,9 @@ export async function fetchData<T>(
       'Content-Type': 'application/json',
     };
   }
+  const url = config.test
+  ? 'https://aeon-qrpay-test.alchemytech.cc'
+  : 'https://aeon-qrpay.alchemypay.org';
   // console.log(`Fetching data from: ${url}${uri}`, init);
   const response = await fetch(`${url}${uri}`, init);
   if (!response.ok) {
